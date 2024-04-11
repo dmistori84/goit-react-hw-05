@@ -3,7 +3,7 @@ import axios from "axios";
 export const fetchMovieDetails = async movieId => {
 	const options = {
 		method: "GET",
-		url: `https://api.themoviedb.org/3/search/movie/${movieId}`,
+		url: `https://api.themoviedb.org/3/movie/${movieId}`,
 		params: { language: "en-US" },
 		headers: {
 			accept: "application/json",
@@ -16,3 +16,30 @@ export const fetchMovieDetails = async movieId => {
 	console.log("fetchMovieDetails ~ data:", data);
 	return data;
 };
+
+// import axios from "axios";
+
+// const API_KEY = "ebb3ed9b1409881e5c8a20b8bb23e7bc";
+// const baseURL = "https://api.themoviedb.org/3";
+
+// const defaultParams = {
+// 	api_key: API_KEY,
+// 	language: "en-US",
+// 	// imageUrl: "https://image.tmdb.org/t/p/w500",
+// };
+
+// const instance = axios.create({
+// 	baseURL: baseURL,
+// 	params: defaultParams,
+// });
+
+// export const fetchMovieDetails = async movieId => {
+// 	try {
+// 		const { data } = await instance.get(`/movie/${movieId}`);
+// 		console.log("data в фетче", data);
+// 		return data;
+// 	} catch (error) {
+// 		console.error("Error fetching movie details:", error);
+// 		throw error;
+// 	}
+// };

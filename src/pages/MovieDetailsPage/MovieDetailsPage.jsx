@@ -11,7 +11,7 @@ const MovieDetailsPage = () => {
 			try {
 				const response = await fetchMovieDetails(movieId);
 				console.log("ответ в деталях фильма", response);
-				setMovieDetails(response.results);
+				setMovieDetails(response);
 			} catch (error) {
 				console.log(error);
 			}
@@ -25,8 +25,10 @@ const MovieDetailsPage = () => {
 				<div>
 					<img src="" alt="" />
 					<h1>Title {movieDetails.title}</h1>
-					<h2>Overview</h2>
-					<h3>Genres</h3>
+					<h2>Overview: </h2>
+					<p>{movieDetails.overview}</p>
+					<h2>Genres</h2>
+					<p>{movieDetails.genres.map(genre => genre.name).join(", ")}</p>
 				</div>
 				<div>
 					<h2>Additional information</h2>

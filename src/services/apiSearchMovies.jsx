@@ -4,7 +4,7 @@ export const fetchSearchMovies = async query => {
 	const options = {
 		method: "GET",
 		url: "https://api.themoviedb.org/3/search/movie",
-		params: { query: query, language: "en-US" },
+		params: { query, language: "en-US" },
 		headers: {
 			accept: "application/json",
 			Authorization:
