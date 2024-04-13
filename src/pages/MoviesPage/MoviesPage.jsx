@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import css from "./MoviesPage.module.css";
-import { fetchSearchMovies } from "../../services/apiSearchMovies";
+import { fetchSearchMovies } from "../../services/apiSearchMovies.js";
 import MovieList from "../../components/MovieList/MovieList";
 
 const MoviesPage = () => {
@@ -10,7 +10,6 @@ const MoviesPage = () => {
 
 	const handleSubmit = event => {
 		event.preventDefault();
-		console.log(value);
 		setQuery(value);
 	};
 

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { fetchTrandMovies } from "../../services/apiTrandMovies";
+import { fetchTrandMovies } from "../../services/apiTrandMovies.js";
 import { useState } from "react";
 
 export const useTrandMovies = () => {
@@ -8,7 +8,6 @@ export const useTrandMovies = () => {
 		async function fetchMovies() {
 			try {
 				const response = await fetchTrandMovies();
-				console.log(response.results);
 				setfilms(response.results);
 			} catch (error) {
 				console.log(error);
