@@ -4,7 +4,7 @@ import { fetchMovieReviews } from "../../services/apiMovieReviews";
 
 const MovieReviews = () => {
 	const { movieId } = useParams();
-	const [reviews, setReviews] = useState();
+	const [reviews, setReviews] = useState([]);
 	useEffect(() => {
 		async function fetchMovies() {
 			try {
@@ -19,15 +19,18 @@ const MovieReviews = () => {
 	console.log("відповіть в ревьевсах", reviews);
 	return (
 		<div>
-			<ul>
-				{reviews &&
-					reviews.map(el => (
+			{reviews.length > 0 ? (
+				<ul>
+					{reviews.map(el => (
 						<li key={el.id}>
 							<p>Author: {el.author}</p>
 							<p>{el.content}</p>
 						</li>
 					))}
-			</ul>
+				</ul>
+			) : (
+				<p>Sorry! No reviews</p>
+			)}
 		</div>
 	);
 };

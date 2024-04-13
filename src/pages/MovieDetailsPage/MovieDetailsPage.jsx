@@ -1,12 +1,18 @@
-import { useEffect, useState } from "react";
-import { Link, Routes, Route, useParams } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { Link, Routes, Route, useParams, useLocation } from "react-router-dom";
 import { fetchMovieDetails } from "../../services/apiMovieDetails.js";
+
 import MovieCast from "../../components/MovieCast/MovieCast.jsx";
 import MovieReviews from "../../components/MovieReviews/MovieReviews.jsx";
+
+import css from "./MovieDetailsPage.module.css";
 
 const MovieDetailsPage = () => {
 	const { movieId } = useParams();
 	const [movieDetails, setMovieDetails] = useState(null);
+	const location = useLocation();
+	const backLinkRef = useRef(location.state ?? "/");
+	console.log("MovieDetailsPage ~ location:", location);
 
 	useEffect(() => {
 		async function fetchMovies() {
@@ -24,11 +30,16 @@ const MovieDetailsPage = () => {
 		movieDetails && (
 			<div>
 				<div>
-					<img
-						src={`https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`}
-						alt={movieDetails.title}
-						width={300}
-					/>
+					<div className={css.wrap}>
+						<img
+							src={`https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`}
+							alt={movieDetails.title}
+							width={300}
+						/>
+						<Link to={backLinkRef.current} className={css.btnBack}>
+							◀ Go back
+						</Link>
+					</div>
 					<h1>Title {movieDetails.title}</h1>
 					<h2>Overview: </h2>
 					<p>{movieDetails.overview}</p>
