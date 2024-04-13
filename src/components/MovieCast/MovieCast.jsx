@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchMovieCast } from "../../services/apiMovieCast";
+
 import css from "./MovieCast.module.css";
 
 const MovieCast = () => {
 	const { movieId } = useParams();
 	const [cast, setCast] = useState();
+
 	useEffect(() => {
 		async function fetchMovies() {
 			try {
@@ -17,7 +19,7 @@ const MovieCast = () => {
 		}
 		fetchMovies();
 	}, [movieId]);
-	console.log("актеры мать их", cast);
+
 	return (
 		<div>
 			<ul className={css.castList}>
@@ -39,23 +41,3 @@ const MovieCast = () => {
 };
 
 export default MovieCast;
-
-{
-	/* <ul>
-						<li>
-							<Link to="cast">Cast</Link>
-						</li>
-						<li>
-							<Link to="reviews">Reviews</Link>
-						</li>
-					</ul>
-				</div>
-				<Routes>
-					<Route path="cast" element={<MovieCast />} />
-					<Route path="reviews" element={<MovieReviews />} />
-				</Routes> */
-}
-
-{
-	/* <Link to={`/movies/${movieDetails.id}/cast`}>Cast</Link>; */
-}

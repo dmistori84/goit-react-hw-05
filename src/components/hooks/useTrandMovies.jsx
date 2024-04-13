@@ -1,9 +1,10 @@
 import { useEffect } from "react";
-import { fetchTrandMovies } from "../../services/apiTrandMovies.js";
 import { useState } from "react";
+import { fetchTrandMovies } from "../../services/apiTrandMovies.js";
 
 export const useTrandMovies = () => {
 	const [films, setfilms] = useState([]);
+
 	useEffect(() => {
 		async function fetchMovies() {
 			try {
@@ -15,5 +16,6 @@ export const useTrandMovies = () => {
 		}
 		fetchMovies();
 	}, []);
+
 	return films;
 };

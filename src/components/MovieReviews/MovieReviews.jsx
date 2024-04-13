@@ -16,7 +16,7 @@ const MovieReviews = () => {
 		}
 		fetchMovies();
 	}, [movieId]);
-	console.log("відповіть в ревьевсах", reviews);
+	
 	return (
 		<div>
 			{reviews.length > 0 ? (

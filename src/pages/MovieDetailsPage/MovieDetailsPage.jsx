@@ -1,18 +1,24 @@
-import { useEffect, useRef, useState } from "react";
+import { Suspense, lazy, useEffect, useRef, useState } from "react";
 import { Link, Routes, Route, useParams, useLocation } from "react-router-dom";
 import { fetchMovieDetails } from "../../services/apiMovieDetails.js";
 
-import MovieCast from "../../components/MovieCast/MovieCast.jsx";
-import MovieReviews from "../../components/MovieReviews/MovieReviews.jsx";
-
 import css from "./MovieDetailsPage.module.css";
+
+// import MovieCast from "../../components/MovieCast/MovieCast.jsx";
+// import MovieReviews from "../../components/MovieReviews/MovieReviews.jsx";
+
+const MovieCast = lazy(() =>
+	import("../../components/MovieCast/MovieCast.jsx")
+);
+const MovieReviews = lazy(() =>
+	import("../../components/MovieReviews/MovieReviews.jsx")
+);
 
 const MovieDetailsPage = () => {
 	const { movieId } = useParams();
 	const [movieDetails, setMovieDetails] = useState(null);
 	const location = useLocation();
 	const backLinkRef = useRef(location.state ?? "/");
-	console.log("MovieDetailsPage ~ location:", location);
 
 	useEffect(() => {
 		async function fetchMovies() {
@@ -57,12 +63,12 @@ const MovieDetailsPage = () => {
 						</li>
 					</ul>
 				</div>
-				<Routes>
-					<Route path="cast" element={<MovieCast />} />
-					<Route path="reviews" element={<MovieReviews />} />
-					{/* <Route path="/movies/:movieId/cast" element={<MovieCast />} />
-					<Route path="/movies/:movieId/reviews" element={<MovieReviews />} /> */}
-				</Routes>
+				<Suspense>
+					<Routes>
+						<Route path="cast" element={<MovieCast />} />
+						<Route path="reviews" element={<MovieReviews />} />
+					</Routes>
+				</Suspense>
 			</div>
 		)
 	);
