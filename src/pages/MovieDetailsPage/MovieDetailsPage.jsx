@@ -49,6 +49,8 @@ const MovieDetailsPage = () => {
 				<Routes>
 					<Route path="cast" element={<MovieCast />} />
 					<Route path="reviews" element={<MovieReviews />} />
+					{/* <Route path="/movies/:movieId/cast" element={<MovieCast />} />
+					<Route path="/movies/:movieId/reviews" element={<MovieReviews />} /> */}
 				</Routes>
 			</div>
 		)
