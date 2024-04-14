@@ -1,18 +1,27 @@
 import { Suspense, lazy, useEffect, useRef, useState } from "react";
-import { Link, Routes, Route, useParams, useLocation } from "react-router-dom";
+import {
+	Link,
+	// Routes,
+	// Route,
+	useParams,
+	useLocation,
+	Outlet,
+} from "react-router-dom";
 import { fetchMovieDetails } from "../../services/apiMovieDetails.js";
 
 import css from "./MovieDetailsPage.module.css";
+// import NotFoundPage from "../NotFoundPage/NotFoundPage.jsx";
+// import Loader from "../../components/Loader/Loader.jsx";
 
 // import MovieCast from "../../components/MovieCast/MovieCast.jsx";
 // import MovieReviews from "../../components/MovieReviews/MovieReviews.jsx";
 
-const MovieCast = lazy(() =>
-	import("../../components/MovieCast/MovieCast.jsx")
-);
-const MovieReviews = lazy(() =>
-	import("../../components/MovieReviews/MovieReviews.jsx")
-);
+// const MovieCast = lazy(() =>
+// 	import("../../components/MovieCast/MovieCast.jsx")
+// );
+// const MovieReviews = lazy(() =>
+// 	import("../../components/MovieReviews/MovieReviews.jsx")
+// );
 
 const MovieDetailsPage = () => {
 	const { movieId } = useParams();
@@ -63,12 +72,14 @@ const MovieDetailsPage = () => {
 						</li>
 					</ul>
 				</div>
-				<Suspense>
+				<Outlet />
+				{/* <Suspense fallback={<Loader />}>
 					<Routes>
 						<Route path="cast" element={<MovieCast />} />
 						<Route path="reviews" element={<MovieReviews />} />
+						<Route path="*" element={<NotFoundPage />} />
 					</Routes>
-				</Suspense>
+				</Suspense> */}
 			</div>
 		)
 	);
